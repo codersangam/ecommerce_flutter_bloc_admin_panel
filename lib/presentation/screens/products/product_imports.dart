@@ -5,6 +5,7 @@ import 'package:ecommerce_flutter_bloc_admin_panel/data/models/products_model.da
 import 'package:ecommerce_flutter_bloc_admin_panel/presentation/common_widgets/icon_card_button.dart';
 import 'package:ecommerce_flutter_bloc_admin_panel/presentation/routes/router_imports.gr.dart';
 import 'package:ecommerce_flutter_bloc_admin_panel/presentation/screens/products/widgets/widgets_imports.dart';
+import 'package:ecommerce_flutter_bloc_admin_panel/services/database_service.dart';
 import 'package:ecommerce_flutter_bloc_admin_panel/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
