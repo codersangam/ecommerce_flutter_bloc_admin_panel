@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 // ignore: must_be_immutable
@@ -35,6 +38,35 @@ class Product extends Equatable {
         price,
         quantity
       ];
+
+  factory Product.fromSnapshot(DocumentSnapshot snapshot) {
+    return Product(
+        id: snapshot['id'],
+        name: snapshot['name'],
+        category: snapshot['category'],
+        imageUrl: snapshot['imageUrl'],
+        details: snapshot['details'],
+        isPopular: snapshot['isPopular'],
+        isRecommended: snapshot['isRecommended'],
+        price: snapshot['price'],
+        quantity: snapshot['quantity']);
+  }
+
+  String toJson() => json.encode(toMap());
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'category': category,
+      'imageUrl': imageUrl,
+      'details': details,
+      'isPopular': isPopular,
+      'isRecommended': isRecommended,
+      'price': price,
+      'quantity': quantity
+    };
+  }
 
   static List<Product> products = [
     Product(
