@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 part of 'product_imports.dart';
 
 class NewProductScreen extends StatefulWidget {
@@ -9,6 +11,7 @@ class NewProductScreen extends StatefulWidget {
 
 class _NewProductScreenState extends State<NewProductScreen> {
   ProductController productController = Get.find();
+  DatabaseService databaseService = DatabaseService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,13 +24,13 @@ class _NewProductScreenState extends State<NewProductScreen> {
               IconCardButton(
                 title: "Add Image",
                 onTap: () {
-                  Utils.pickedImage(context);
+                  Utils.pickedImage(context, productController);
                 },
               ),
               _buildTextFormField("Product Id", 'id', productController),
               _buildTextFormField("Product Name", 'name', productController),
               _buildTextFormField(
-                  "Product Description", 'description', productController),
+                  "Product Description", 'details', productController),
               _buildTextFormField(
                   "Product Category", 'category', productController),
               _buildSlider(
@@ -48,6 +51,21 @@ class _NewProductScreenState extends State<NewProductScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     print(productController.newProduct);
+                    databaseService.addProduct(
+                      Product(
+                        id: int.parse(productController.newProduct['id']),
+                        name: productController.newProduct['name'],
+                        category: productController.newProduct['category'],
+                        imageUrl: productController.newProduct['imageUrl'],
+                        details: productController.newProduct['details'],
+                        isPopular: productController.newProduct['isPopular'],
+                        isRecommended:
+                            productController.newProduct['isRecommended'],
+                        price: productController.newProduct['price'],
+                        quantity:
+                            productController.newProduct['quantity'].toInt(),
+                      ),
+                    );
                   },
                   child: "Save".text.color(MyColors.white).xl2.make(),
                 ),
