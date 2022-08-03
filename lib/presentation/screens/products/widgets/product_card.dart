@@ -37,14 +37,17 @@ class ProductCard extends StatelessWidget {
                       children: [
                         "Price".text.bold.make(),
                         Slider(
-                            value: product.price,
-                            min: 0,
-                            max: 1000,
-                            divisions: 50,
-                            onChanged: (value) {
-                              productController.updateProductPrice(
-                                  index, product, value);
-                            }),
+                          value: product.price,
+                          min: 0,
+                          max: 1000,
+                          divisions: 50,
+                          onChanged: (value) {
+                            productController.updateProductPrice(
+                                index, product, value);
+                          },
+                          onChangeEnd: (value) => productController
+                              .saveNewProductPrice(product, 'price', value),
+                        ),
                         "\$${product.price.toStringAsFixed(1)}".text.make(),
                       ],
                     ),
@@ -52,14 +55,18 @@ class ProductCard extends StatelessWidget {
                       children: [
                         "Quantity".text.bold.make(),
                         Slider(
-                            value: product.quantity.toDouble(),
-                            min: 0,
-                            max: 100,
-                            divisions: 10,
-                            onChanged: (value) {
-                              productController.updateProductQuantity(
-                                  index, product, value.toInt());
-                            }),
+                          value: product.quantity.toDouble(),
+                          min: 0,
+                          max: 100,
+                          divisions: 10,
+                          onChanged: (value) {
+                            productController.updateProductQuantity(
+                                index, product, value.toInt());
+                          },
+                          onChangeEnd: (value) =>
+                              productController.saveNewProductQuantity(
+                                  product, 'quantity', value.toInt()),
+                        ),
                         product.quantity.toInt().text.make(),
                       ],
                     ),

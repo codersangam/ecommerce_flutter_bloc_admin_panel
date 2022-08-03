@@ -18,10 +18,10 @@ class ProductScreen extends StatelessWidget {
                 AutoRouter.of(context).push(const NewProductScreenRoute()),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: Product.products.length,
-              itemBuilder: (context, index) {
-                return Obx(() {
+            child: Obx(() {
+              return ListView.builder(
+                itemCount: productController.products.length,
+                itemBuilder: (context, index) {
                   return SizedBox(
                     height: 300,
                     child: ProductCard(
@@ -29,9 +29,9 @@ class ProductScreen extends StatelessWidget {
                       index: index,
                     ),
                   );
-                });
-              },
-            ),
+                },
+              );
+            }),
           ),
         ],
       ),
