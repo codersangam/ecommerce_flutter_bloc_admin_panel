@@ -28,6 +28,19 @@ class HomeScreen extends StatelessWidget {
                   .wh(MediaQuery.of(context).size.width, 100),
             ).makeCentered().pSymmetric(h: 15),
           ),
+          20.heightBox,
+          InkWell(
+            onTap: () {
+              AutoRouter.of(context).push(const OrdersScreenRoute());
+            },
+            child: VxCard(
+              "Go to Orders"
+                  .text
+                  .xl2
+                  .makeCentered()
+                  .wh(MediaQuery.of(context).size.width, 100),
+            ).makeCentered().pSymmetric(h: 15),
+          ),
         ],
       ),
     );
