@@ -13,7 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:ecommerce_flutter_bloc_admin_panel/presentation/screens/home_screen.dart'
     as _i1;
-import 'package:ecommerce_flutter_bloc_admin_panel/presentation/screens/orders/orders_screen.dart'
+import 'package:ecommerce_flutter_bloc_admin_panel/presentation/screens/orders/orders_imports.dart'
     as _i3;
 import 'package:ecommerce_flutter_bloc_admin_panel/presentation/screens/products/product_imports.dart'
     as _i2;
