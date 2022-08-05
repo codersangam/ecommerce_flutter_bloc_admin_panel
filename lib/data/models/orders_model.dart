@@ -69,7 +69,7 @@ class Orders extends Equatable {
     Orders(
       id: 1,
       customerId: 2345,
-      productIds: const [1],
+      productIds: const [1, 2, 3],
       total: 999.0,
       subTotal: 999.0,
       isAccepted: false,
@@ -79,7 +79,7 @@ class Orders extends Equatable {
     Orders(
       id: 2,
       customerId: 2345,
-      productIds: const [1],
+      productIds: const [6, 4, 5],
       total: 1999.0,
       subTotal: 1999.0,
       isAccepted: true,
