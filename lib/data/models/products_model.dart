@@ -12,7 +12,7 @@ class Product extends Equatable {
   final String details;
   final bool isPopular;
   final bool isRecommended;
-  double price;
+  int price;
   int quantity;
 
   Product(
