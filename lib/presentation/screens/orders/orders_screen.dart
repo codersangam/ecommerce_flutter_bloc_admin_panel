@@ -5,18 +5,21 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OrdersController ordersController = Get.put(OrdersController());
     return Scaffold(
       appBar: VxAppBar(title: 'Orders Screen'.text.make()),
       body: Column(
         children: [
-          ListView.builder(
-            itemCount: Orders.orders.length,
-            itemBuilder: (context, index) {
-              return OrderProductCard(
-                orders: Orders.orders[index],
-              );
-            },
-          ).expand(),
+          Obx(() {
+            return ListView.builder(
+              itemCount: ordersController.pendingOrders.length,
+              itemBuilder: (context, index) {
+                return OrderProductCard(
+                  orders: ordersController.pendingOrders[index],
+                );
+              },
+            ).expand();
+          }),
         ],
       ),
     );
@@ -33,13 +36,14 @@ class OrderProductCard extends StatelessWidget {
     var products = Product.products
         .where((product) => orders.productIds.contains(product.id))
         .toList();
+    OrdersController ordersController = Get.put(OrdersController());
     return Card(
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              "Order No: ${orders.id}".text.bold.make(),
+              "Order No: #${orders.id}".text.bold.make(),
               DateFormat('dd/MM/yyyy').format(orders.createdAt).text.make(),
             ],
           ),
@@ -92,12 +96,26 @@ class OrderProductCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              orders.isAccepted
+                  ? ElevatedButton(
+                      onPressed: () {
+                        ordersController.updateOrder(
+                            orders, "isDelivered", !orders.isDelivered);
+                      },
+                      child: "Delivered".text.make(),
+                    )
+                  : ElevatedButton(
+                      onPressed: () {
+                        ordersController.updateOrder(
+                            orders, "isAccepted", !orders.isAccepted);
+                      },
+                      child: "Accept".text.make(),
+                    ),
               ElevatedButton(
-                onPressed: () {},
-                child: "Accept".text.make(),
-              ),
-              ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  ordersController.updateOrder(
+                      orders, "isCancelled", !orders.isCancelled);
+                },
                 child: "Cancel".text.make(),
               ),
             ],

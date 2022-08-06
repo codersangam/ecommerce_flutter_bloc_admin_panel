@@ -37,7 +37,7 @@ class ProductCard extends StatelessWidget {
                       children: [
                         "Price".text.bold.make(),
                         Slider(
-                          value: product.price,
+                          value: product.price.toDouble(),
                           min: 0,
                           max: 1000,
                           divisions: 50,

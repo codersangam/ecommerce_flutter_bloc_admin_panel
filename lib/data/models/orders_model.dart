@@ -6,11 +6,12 @@ import 'package:equatable/equatable.dart';
 class Orders extends Equatable {
   final int id;
   final int customerId;
-  final List<int> productIds;
-  final double total;
-  final double subTotal;
+  final List<dynamic> productIds;
+  final int total;
+  final int subTotal;
   final bool isAccepted;
   final bool isDelivered;
+  final bool isCancelled;
   final DateTime createdAt;
 
   const Orders(
@@ -21,6 +22,7 @@ class Orders extends Equatable {
       required this.subTotal,
       required this.isAccepted,
       required this.isDelivered,
+      required this.isCancelled,
       required this.createdAt});
 
   Map<String, dynamic> toMap() {
@@ -32,6 +34,7 @@ class Orders extends Equatable {
       'subTotal': subTotal,
       'isAccepted': isAccepted,
       'isDelivered': isDelivered,
+      'isCancelled': isCancelled,
       'createdAt': createdAt.toIso8601String()
     };
   }
@@ -45,7 +48,8 @@ class Orders extends Equatable {
         subTotal: snapshot['subTotal'],
         isAccepted: snapshot['isAccepted'],
         isDelivered: snapshot['isDelivered'],
-        createdAt: DateTime.parse(snapshot['createdAt']));
+        isCancelled: snapshot['isCancelled'],
+        createdAt: snapshot['createdAt'].toDate());
   }
 
   String toJson() => json.encode(toMap());
@@ -62,6 +66,7 @@ class Orders extends Equatable {
         subTotal,
         isAccepted,
         isDelivered,
+        isCancelled,
         createdAt
       ];
 
@@ -70,20 +75,22 @@ class Orders extends Equatable {
       id: 1,
       customerId: 2345,
       productIds: const [1, 2, 3],
-      total: 999.0,
-      subTotal: 999.0,
+      total: 999,
+      subTotal: 999,
       isAccepted: false,
       isDelivered: false,
+      isCancelled: false,
       createdAt: DateTime.now(),
     ),
     Orders(
       id: 2,
       customerId: 2345,
       productIds: const [6, 4, 5],
-      total: 1999.0,
-      subTotal: 1999.0,
+      total: 1999,
+      subTotal: 1999,
       isAccepted: true,
       isDelivered: false,
+      isCancelled: false,
       createdAt: DateTime.now(),
     ),
   ];
