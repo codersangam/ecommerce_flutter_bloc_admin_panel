@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "64486316902",
-    "project_id": "foodcrunch-bloc-admin-panel",
-    "storage_bucket": "foodcrunch-bloc-admin-panel.appspot.com"
+    "project_number": "728572438414",
+    "project_id": "food-crunch-bloc",
+    "storage_bucket": "food-crunch-bloc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:64486316902:android:396ce2cee491f57222c6a7",
+        "mobilesdk_app_id": "1:728572438414:android:03da083a3269d67a9c26df",
         "android_client_info": {
-          "package_name": "com.example.ecommerce_flutter_bloc_admin_panel"
+          "package_name": "com.example.ecommerce_flutter_bloc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "64486316902-vg7181gv5pd45sfcq3tsijbl9sgv0lk0.apps.googleusercontent.com",
+          "client_id": "728572438414-2oo47etds6g9lqag4o94mvtm8h543e0m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCgt6bzehdv11wIn_SCPBsGM3zpgyJDjeM"
+          "current_key": "AIzaSyAObt0gkcazyKBerHHkNG1wp-j7jweprbI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "64486316902-vg7181gv5pd45sfcq3tsijbl9sgv0lk0.apps.googleusercontent.com",
+              "client_id": "728572438414-2oo47etds6g9lqag4o94mvtm8h543e0m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
