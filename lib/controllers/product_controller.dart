@@ -22,7 +22,7 @@ class ProductController extends GetxController {
   get isPopular => newProduct['isPopular'];
 
   void updateProductPrice(int index, Product product, double value) {
-    product.price = value.toInt();
+    product.price = value;
     products[index] = product;
   }
 

@@ -26,25 +26,34 @@ class OrdersScreen extends StatelessWidget {
   }
 }
 
-class OrderProductCard extends StatelessWidget {
+class OrderProductCard extends StatefulWidget {
   const OrderProductCard({Key? key, required this.orders}) : super(key: key);
 
   final Orders orders;
 
   @override
+  State<OrderProductCard> createState() => _OrderProductCardState();
+}
+
+class _OrderProductCardState extends State<OrderProductCard> {
+  ProductController productController = Get.put(ProductController());
+  OrdersController ordersController = Get.put(OrdersController());
+  @override
   Widget build(BuildContext context) {
-    var products = Product.products
-        .where((product) => orders.productIds.contains(product.id))
+    var products = productController.products
+        .where((product) => widget.orders.productIds.contains(product.id))
         .toList();
-    OrdersController ordersController = Get.put(OrdersController());
     return Card(
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              "Order No: #${orders.id}".text.bold.make(),
-              DateFormat('dd/MM/yyyy').format(orders.createdAt).text.make(),
+              "Order No: #${widget.orders.id}".text.bold.make(),
+              DateFormat('dd/MM/yyyy')
+                  .format(widget.orders.createdAt)
+                  .text
+                  .make(),
             ],
           ),
           10.heightBox,
@@ -81,7 +90,7 @@ class OrderProductCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               "SubTotal: ".text.make(),
-              orders.subTotal.text.make(),
+              "${MyCurrency.value}" " ${widget.orders.subTotal}".text.make(),
             ],
           ),
           10.heightBox,
@@ -89,32 +98,35 @@ class OrderProductCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               "Total: ".text.bold.make(),
-              orders.subTotal.text.bold.make(),
+              "${MyCurrency.value}" " ${widget.orders.subTotal}"
+                  .text
+                  .bold
+                  .make(),
             ],
           ),
           10.heightBox,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              orders.isAccepted
+              widget.orders.isAccepted
                   ? ElevatedButton(
                       onPressed: () {
-                        ordersController.updateOrder(
-                            orders, "isDelivered", !orders.isDelivered);
+                        ordersController.updateOrder(widget.orders,
+                            "isDelivered", !widget.orders.isDelivered);
                       },
                       child: "Delivered".text.make(),
                     )
                   : ElevatedButton(
                       onPressed: () {
-                        ordersController.updateOrder(
-                            orders, "isAccepted", !orders.isAccepted);
+                        ordersController.updateOrder(widget.orders,
+                            "isAccepted", !widget.orders.isAccepted);
                       },
                       child: "Accept".text.make(),
                     ),
               ElevatedButton(
                 onPressed: () {
                   ordersController.updateOrder(
-                      orders, "isCancelled", !orders.isCancelled);
+                      widget.orders, "isCancelled", !widget.orders.isCancelled);
                 },
                 child: "Cancel".text.make(),
               ),
