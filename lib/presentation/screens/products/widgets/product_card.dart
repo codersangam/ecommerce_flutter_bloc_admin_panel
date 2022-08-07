@@ -24,11 +24,14 @@ class ProductCard extends StatelessWidget {
           10.heightBox,
           Row(
             children: [
-              Image.network(
-                product.imageUrl,
+              CachedNetworkImage(
+                imageUrl: product.imageUrl,
                 fit: BoxFit.cover,
                 height: 100,
                 width: 100,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator().wh(20, 20),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               Expanded(
                 child: Column(
